@@ -1,0 +1,63 @@
+[package]
+name = "evereader"
+# Suffix with -dev when not a release.
+version = "0.13.1-dev"
+authors = ["Jason Ish <ish@unx.ca>"]
+edition = "2018"
+description = "A web based Suricata event manager"
+license = "AGPL-3.0"
+homepage = "https://evebox.org"
+repository = "https://github.com/jasonish/evebox"
+documentation = "https://evebox.org"
+
+[profile.release]
+lto = true
+opt-level = 3
+
+[workspace]
+members = [".", "./suricata-rule-parser"]
+
+[dependencies]
+tokio = { version = "1", default-features = false, features = ["signal", "macros", "rt-multi-thread"] }
+warp = { version = "0.3.1", features = ["tls"] }
+serde = { version = "1.0.110", features = ["derive"] }
+reqwest = { version = "0.11.2", default-features = false, features = ["json", "rustls-tls"] }
+rust-embed = { version = "5.5.1", features = ["compression"] }
+serde_json = "1.0.53"
+humantime = "2.0.0"
+chrono = "0.4.11"
+serde_urlencoded = "0.6.1"
+clap = { version = "2.33.1", default-features = false, features = [] }
+
+tracing = "0.1.25"
+tracing-subscriber = "0.2.17"
+tracing-log = "0.1.2"
+stdlog = { package = "log", version = "0.4.8" }
+
+thiserror = "1.0.19"
+anyhow = "1.0.31"
+
+rusqlite = { version = "0.23.1", default-features = false, features = ["bundled", "serde_json"] }
+
+error-chain = { version = "0.12.2", default-features = false, features = [] }
+
+percent-encoding = "2.1.0"
+ulid = "0.3.1"
+md5 = "0.7.0"
+config = "0.10.1"
+maxminddb = "0.13.0"
+lazy_static = "1.4.0"
+webbrowser = "0.5.2"
+bytes = "0.5.4"
+base64 = "0.12.1"
+futures = "0.3.5"
+rand = "0.7.3"
+bcrypt = "0.9.0"
+rpassword = "4.0.5"
+uuid = { version = "0.8.1", features = ["v4"] }
+glob = "0.3.0"
+serde_yaml = "0.8.13"
+
+suricata-rule-parser = { path = "./suricata-rule-parser", package = "evebox-suricata-rule-parser", version = "0.1.0" }
+filetime = "0.2.12"
+notify = "4.0.15"
